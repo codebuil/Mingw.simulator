@@ -43,6 +43,7 @@ class BareboneBuilder:
         filename = tk.filedialog.askopenfilename(title="Select file")
         self.text_area.delete(1.0, tk.END)
         self.execute_command("unzip -u ./file/CD_root.zip -d /tmp",False)
+        self.execute_command("nasm -o /tmp/model.o ./file/model.asm",True)
         self.execute_command("i686-w64-mingw32-as -o /tmp/boot.o ./file/boot.s",True)
         
         fff=f'i686-w64-mingw32-gcc -c -I./file -L./file -nostdlib "$1" -o /tmp/kernel.o'.replace("$1",filename)
